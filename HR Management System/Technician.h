@@ -17,6 +17,13 @@ public:
 	{
 		this->specialization = specialization;
 	}
+	int calculateTechnicianSalary()
+	{
+		int yearsOfWorking = Date::yearsSinceDate(getDateOfStartWorking());
+		if (yearsOfWorking > 10)
+			return 16000;
+		return 1500;
+	}
 
 };
 
