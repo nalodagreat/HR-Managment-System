@@ -4,6 +4,9 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <vector>
+#include "clsString.h" 
 using namespace std;
 
 class Date
@@ -217,5 +220,19 @@ public:
 			date.year = stoi(vData[2]);
 		}
 		return date;
+	}
+	static int yearsSinceDate(Date fromDate)
+	{
+		systemDate sys = getSystemDate();
+
+		int years = sys.year - fromDate.getyear();
+
+		if ((sys.month < fromDate.getmonth()) ||
+			(sys.month == fromDate.getmonth() && sys.day < fromDate.getDay()))
+		{
+			years--;
+		}
+
+		return years;
 	}
 };
