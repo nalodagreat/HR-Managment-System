@@ -1,0 +1,11 @@
+.vs/
+*.vcxproj.user
+x64/
+*.exe
+*.pdb
+*.obj
+*.ilk
+*.log
+*.tlog/
+*.idb
+*.filters
