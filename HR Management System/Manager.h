@@ -24,7 +24,14 @@ public:
 	void setResponsibility(string responsibility) {
 		this->responsibility = responsibility;
 	}
-	void addTechnician(Technician technician) {
+	void addTechnician(Technician technician)
+	{
+		// Check if the technician is already managed by this manager
+		for (Technician tech : vTechnicians) {
+			if (tech.getCfManagedByManager() == technician.getCfManagedByManager()) {
+				return; // Technician already exists in the list
+			}
+		}
 		vTechnicians.push_back(technician);
 	}
 	vector<Technician> getTechnicians() {
