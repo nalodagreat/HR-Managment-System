@@ -1,5 +1,5 @@
-Director;XYZA17890;Andrea;Rossi;2008-02-05;Amministrazione
-Director;BCDE29013;Paolo;Neri;2015-11-11;Sviluppo
+Executive;XYZA17890;Andrea;Rossi;2008-02-05;Amministrazione
+Executive;BCDE29013;Paolo;Neri;2015-11-11;Sviluppo
 Manager;VWX852147963;Elena;Bianchi;2015-12-10;XYZA17890;contabilità
 Manager;GHIJ70315;Federico;Russo;2014-04-23;BCDE29013;test
 Manager;LMNO82460;Elisa;Verdi;2018-01-29;BCDE29013;manutenzione
