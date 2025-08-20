@@ -235,4 +235,16 @@ public:
 
 		return years;
 	}
+	static Date convertStringToDat(string line, string seperator = "-")
+	{
+		Date date;
+		vector<string> vData = clsString::Split(line, seperator);
+		if (vData.size() == 3)
+		{
+			date.setDay(stoi(vData[0]));
+			date.setmonth(stoi(vData[1]));
+			date.setyear(stoi(vData[2]));
+		}
+		return date;
+	}
 };
