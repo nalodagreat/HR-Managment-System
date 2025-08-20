@@ -27,6 +27,18 @@ public:
 	vector<Employee> getEmployees() {
 		return vEmployees;
 	}
+	double calculateSalary() {
+		double salary = 2500.0; // base salary for executive
+		
+		for (Employee emp : vEmployees) 
+		{
+			if (emp.getRole() == "Executive" && emp.getCf() != this->getCf())
+			{
+				salary *= 0.1; // 10% bonus for each executive
+			}
+		}
+		return salary;
+	}
 	
 };
 
