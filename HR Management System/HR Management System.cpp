@@ -13,11 +13,25 @@ Requirements:
 Develop an application that reads the company employee data from a CSV text file(provided as an attachment to the exam) and builds the necessary classes(methods and attributes) to store the data and answer the following requests.
 Note: the same employee cannot be entered twice.
 The main program will call the company methods(characterized by the company name and the ArrayList of all employees...) required to answer the following requests*/
+#include <iostream>
+#include <vector>
+#include "Company.h"
 
 using namespace std;
 
 int main()
 {
-	
+	Company company("My Company");
+	// Load employees from file
+	vector<Employee> employees = company.getEmployees();
+	// Add employees to company
+	for (Employee emp : employees) {
+		company.addEmployee(emp);
+	}
+	// Display all employees
+	for (Employee emp : company.getEmployees()) {
+		cout << emp.getName() << " " << emp.getSurname() << endl;
+	}
+	return 0;
 }
 

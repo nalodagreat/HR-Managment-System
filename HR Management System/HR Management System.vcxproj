@@ -130,8 +130,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsString.h" />
+    <ClInclude Include="Company.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Employee.h" />
+    <ClInclude Include="Executive.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Technician.h" />
   </ItemGroup>

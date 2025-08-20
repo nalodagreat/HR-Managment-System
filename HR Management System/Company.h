@@ -65,16 +65,18 @@ public:
 	void setCompanyName(string companyName) {
 		this->companyName = companyName;
 	}
-	void addEmployee(Employee employee) {
+	bool addEmployee(Employee employee) 
+	{
 		if (employeeExists(employee.getCf())) {
-			cout << "Employee with CF " << employee.getCf() << " already exists." << endl;
-			return; // Employee already exists, do not add
+			/*cout << "Employee with CF " << employee.getCf() << " already exists." << endl;*/
+			return false; // Employee already exists, do not add
 		}
 		vEmployees.push_back(employee);
+		return true;
 	}
 	vector<Employee> getEmployees()
 	{
-
+		vEmployees = loadEmployeesFromFile(); // Load employees from file
 		return vEmployees;
 	}
 	bool employeeExists(string cf) {
