@@ -23,15 +23,9 @@ int main()
 {
 	Company company("My Company");
 	// Load employees from file
-	vector<Employee> employees = company.getEmployees();
-	// Add employees to company
-	for (Employee emp : employees) {
-		company.addEmployee(emp);
-	}
-	// Display all employees
-	for (Employee emp : company.getEmployees()) {
-		cout << emp.getName() << " " << emp.getSurname() << endl;
-	}
+	vector<Employee*> employees = company.getEmployees();
+	// print all employees details
+	company.printAllEmployees();
 	return 0;
 }
 
