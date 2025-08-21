@@ -95,24 +95,19 @@ public:
 				<< ", Name: " << emp->getName() << ", Surname: " << emp->getSurname()
 				<< ", Date of Start Working: " << emp->getDateOfStartWorking().dateTostring() << endl;
 			if (emp->getRole() == "Technician") {
-				Technician t(emp->getRole(), emp->getCf(), emp->getName(), emp->getSurname(), emp->getDateOfStartWorking(), emp->getSpecialization(), emp->getCfManagedByManager());
-				cout << "Specialization: " << t.getSpecialization()
-					<< ", Managed by Manager CF: " << t.getCfManagedByManager()
-					<< ", Salary: " << t.calculateSalary() << endl;
+				cout << "Specialization: " <<  emp->getSpecialization()
+					<< ", Managed by Manager CF: " <<  emp->getCfManagedByManager()
+					<< ", Salary: " <<  emp->calculateSalary() << endl;
 			}
 			else if (emp->getRole() == "Manager") {
-				Manager mgr(emp->getRole(), emp->getCf(), emp->getName(), emp->getSurname(), emp->getDateOfStartWorking(), emp->getResponsibility(), emp->getCfManagedByExecutives());
-				cout << "Responsibility: " << mgr.getResponsibility()
-					<< ", Managed by Executive CF: " << mgr.getCfManagedByExecutives()
-					<< ", Salary: " << mgr.calculateSalary() << endl;
+				cout << "Responsibility: " <<  emp->getResponsibility()
+					<< ", Managed by Executive CF: " <<  emp->getCfManagedByExecutives()
+					<< ", Salary: " <<  emp->calculateSalary() << endl;
 			}
 			else if (emp->getRole() == "Executive") {
-				//utilizzata variabile puntatore locale non inizializzata 'exec'
 				// to avoid memory leak, we should not use new here, instead we can use stack allocation
-
-				Executive exec(emp->getRole(), emp->getCf(), emp->getName(), emp->getSurname(), emp->getDateOfStartWorking(), emp->getDivisionName());
-				cout << "Division Name: " << exec.getDivisionName()
-					<< ", Salary: " << exec.calculateSalary() << endl;
+				cout << "Division Name: " <<  emp->getDivisionName()
+					<< ", Salary: " <<  emp->calculateSalary() << endl;
 
 			}
 		}
