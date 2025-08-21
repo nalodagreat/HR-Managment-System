@@ -23,11 +23,11 @@ public:
 	{
 		return cfManagedByManager;
 	}
-	int calculateTechnicianSalary()
+	double calculateSalary()
 	{
 		int yearsOfWorking = Date::yearsSinceDate(getDateOfStartWorking());
 		if (yearsOfWorking > 10)
-			return 16000;
+			return 1600;
 		return 1500;
 	}
 
