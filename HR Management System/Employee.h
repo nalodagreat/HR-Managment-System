@@ -58,6 +58,17 @@ public:
 	{
 		this->dateOfStartWorking = dateOfStartWorking;
 	}
+	virtual double calculateSalary()
+	{
+		// Base salary calculation logic can be overridden in derived classes
+		return 0.0;
+	}
+	virtual string getSpecialization() { return ""; }
+	virtual string getCfManagedByManager() { return ""; }
+	virtual string getCfManagedByExecutives() { return ""; }
+	virtual string getResponsibility() { return ""; }
+	virtual string getDivisionName() { return ""; }
+
 
 };
 
