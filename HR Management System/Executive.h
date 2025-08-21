@@ -34,7 +34,7 @@ public:
 		{
 			if (emp.getRole() == "Executive" && emp.getCf() != this->getCf())
 			{
-				salary *= 0.1; // 10% bonus for each executive
+				salary = emp .calculateSalary()*0.1; // 10% bonus for each executive
 			}
 		}
 		return salary;
