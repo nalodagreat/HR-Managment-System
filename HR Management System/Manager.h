@@ -47,7 +47,7 @@ public:
 		double salary = 2000.0; // base salary for manager
 		for (Technician tech : vTechnicians) {
 			if (tech.getCfManagedByManager() == this->getCf()) {
-				salary *= 0.1;
+				salary += tech.calculateSalary() * 0, 1;
 			}
 		}
 		return salary;
