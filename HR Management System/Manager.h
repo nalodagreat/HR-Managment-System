@@ -1,58 +1,40 @@
 #pragma once
 #include "Employee.h"
-#include <string>
-#include <iostream>
-#include "Date.h"
 #include "Technician.h"
+#include <string>
 #include <vector>
+
 using namespace std;
-class Manager : public Employee
+
+class Manager : public Employee 
 {
-	string responsibility;
-	string cfMangedByExecutives; // this is the tax code of the executive who manages this manager
-	vector<Technician> vTechnicians; //list of technicians who report to this manager
+private:
+    string responsibilityField;
+
 public:
-	Manager(string role, string cf, string name, string surname, Date dateOfStartWorking, string responsibility,string cfMangedByExecutives)
-		: Employee(role, cf, name, surname, dateOfStartWorking)
-	{
-		this->responsibility = responsibility;
-		this->cfMangedByExecutives = cfMangedByExecutives;
-	}
-	string getResponsibility() {
-		return responsibility;
-	}
-	void setResponsibility(string responsibility) {
-		this->responsibility = responsibility;
-	}
-	bool addTechnician(Technician technician)
-	{
-		// Check if the technician is already managed by this manager
-		for (Technician tech : vTechnicians) {
-			if (tech.getCfManagedByManager() == technician.getCfManagedByManager()) {
-				return false; // Technician already exists in the list
-			}
-		}
-		vTechnicians.push_back(technician);
-		return true; // Technician added successfully
-	}
-	vector<Technician> getTechnicians() {
-		return vTechnicians;
-	}
-	
-    void addTechnicianToManagerList(Technician technician )
-	{
-		vTechnicians.push_back(technician);
-	}
-	double calculateSalary() {
-		double salary = 2000.0; // base salary for manager
-		for (Technician tech : vTechnicians) {
-			if (tech.getCfManagedByManager() == this->getCf()) {
-				salary += tech.calculateSalary() * 0.1;
-			}
-		}
-		return salary;
-	}
+    Manager(const string& tc, const string& fn, const string& ln, const string& hd, const string& respField)
+        : Employee(tc, fn, ln, hd), responsibilityField(respField) {}
 
+    double calculateSalary(const vector<Employee*>& allEmployees) override {
+        double baseSalary = 2000.0;
+        double bonus = 0.0;
 
+        // Iterate through all employees to find technicians reporting to this manager
+        for (Employee* emp : allEmployees) {
+            // Use dynamic_cast to safely check if the employee is a Technician
+            Technician* tech = dynamic_cast<Technician*>(emp);
+            if (tech != nullptr) 
+            {
+                
+                if (tech->getManagerTaxCode() == this->getTaxCode()) {
+                    // The technician's salary itself doesn't depend on the list, so we can pass an empty one.
+                    bonus += 0.10 * tech->calculateSalary({}); 
+                }
+            }
+        }
+
+        return baseSalary + bonus;
+    }
+
+    string getResponsibilityField() const { return responsibilityField; }
 };
-
