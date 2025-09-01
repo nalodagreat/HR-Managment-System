@@ -1,0 +1,6 @@
+Executive,EXEC01,Andrea,Rossi,2008-02-05,Administration
+Manager,MGR01,Paolo,Neri,2015-11-11,Software Development
+Technician,TCH01,Mario,Rossi,2018-05-20,hardware,MGR01
+Technician,TCH02,Luigi,Verdi,2012-03-15,software,MGR01
+Manager,MGR02,Elena,Bianchi,2014-12-10,Quality Assurance
+Technician,TCH03,Carla,Gialli,2020-01-30,hardware,MGR02
