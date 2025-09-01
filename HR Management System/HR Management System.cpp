@@ -21,11 +21,13 @@ using namespace std;
 
 int main()
 {
-	Company company("My Company");
-	// Load employees from file
-	vector<Employee*> employees = company.getEmployees();
-	// print all employees details
-	company.printAllEmployees();
+    Company myCompany("My Awesome Corp");
+
+    // Load all employees from the CSV file
+    myCompany.loadEmployeesFromCSV("employees.csv");
+
+    // Calculate and print all salaries
+    myCompany.printAllSalaries();
 	return 0;
 }
 
