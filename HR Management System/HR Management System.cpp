@@ -26,8 +26,20 @@ int main()
     // Load all employees from the CSV file
     myCompany.loadEmployeesFromCSV("employees.csv");
 
-    // Calculate and print all salaries
-    myCompany.printAllSalaries();
+    // --- Demonstrate Final Features ---
+
+    // 1. Print employees grouped by role
+    myCompany.printEmployeesByRole();
+
+    // 2. Find a specific employee
+    myCompany.printSalaryByTaxCode("MGR01"); // Should find Paolo Neri
+    myCompany.printSalaryByTaxCode("XYZ99"); // Should not find anyone
+
+    // 3. Calculate and print the total cost
+    myCompany.printTotalSalaryCost();
+
+    std::cout << "\nProgram finished." << std::endl;
+
 	return 0;
 }
 
