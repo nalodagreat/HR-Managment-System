@@ -74,18 +74,85 @@ public:
     }
 
     void printAllSalaries() {
-        cout << "\n--- Salary Report for " << companyName << " ---" << endl;
-        // Create a temporary vector of raw pointers for calculations
+        cout << "\n--- Full Salary Report for " << companyName << " ---" << endl;
+        vector<Employee*> raw_employees = getRawEmployeePointers();
+
+        for (const auto& emp : employees) {
+            printEmployeeSalary(emp.get(), raw_employees);
+        }
+        cout << "------------------------------------" << endl;
+    }
+
+    void printSalaryByTaxCode(const string& taxCode) {
+        cout << "\n--- Searching for employee with Tax Code: " << taxCode << " ---" << endl;
+        Employee* found_emp = nullptr;
+        for (const auto& emp : employees) {
+            if (emp->getTaxCode() == taxCode) {
+                found_emp = emp.get();
+                break;
+            }
+        }
+
+        if (found_emp) {
+            printEmployeeSalary(found_emp, getRawEmployeePointers());
+        } else {
+            cout << "Employee not found." << endl;
+        }
+        cout << "----------------------------------------------------" << endl;
+    }
+
+    void printTotalSalaryCost() {
+        cout << "\n--- Total Monthly Salary Cost ---" << endl;
+        double totalCost = 0.0;
+        vector<Employee*> raw_employees = getRawEmployeePointers();
+        for (const auto& emp : employees) {
+            totalCost += emp->calculateSalary(raw_employees);
+        }
+        cout << "Total cost for " << employees.size() << " employees: " << totalCost << " EUR" << endl;
+        cout << "---------------------------------" << endl;
+    }
+
+    void printEmployeesByRole() {
+        cout << "\n--- Employees by Role ---" << endl;
+        vector<Employee*> raw_employees = getRawEmployeePointers();
+
+        cout << "\n** Executives **" << endl;
+        for (const auto& emp : employees) {
+            if (dynamic_cast<Executive*>(emp.get())) {
+                printEmployeeSalary(emp.get(), raw_employees);
+            }
+        }
+
+        cout << "\n** Managers **" << endl;
+        for (const auto& emp : employees) {
+            if (dynamic_cast<Manager*>(emp.get())) {
+                printEmployeeSalary(emp.get(), raw_employees);
+            }
+        }
+
+        cout << "\n** Technicians **" << endl;
+        for (const auto& emp : employees) {
+            if (dynamic_cast<Technician*>(emp.get())) {
+                printEmployeeSalary(emp.get(), raw_employees);
+            }
+        }
+        cout << "-------------------------" << endl;
+    }
+
+private:
+    // Helper to get raw pointers for calculations
+    vector<Employee*> getRawEmployeePointers() {
         vector<Employee*> raw_employees;
         for(const auto& emp : employees) {
             raw_employees.push_back(emp.get());
         }
+        return raw_employees;
+    }
 
-        for (const auto& emp : employees) {
-            cout << "- " << emp->getFirstName() << " " << emp->getLastName() 
-                 << " (" << emp->getTaxCode() << "): " 
-                 << emp->calculateSalary(raw_employees) << " EUR" << endl;
-        }
-        cout << "------------------------------------" << endl;
+    // Helper to print a single employee's salary
+    void printEmployeeSalary(Employee* emp, const vector<Employee*>& all_emps) {
+        cout << "- " << emp->getFirstName() << " " << emp->getLastName() 
+                << " (" << emp->getTaxCode() << "): " 
+                << emp->calculateSalary(all_emps) << " EUR" << endl;
     }
 };
